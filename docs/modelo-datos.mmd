@@ -1,0 +1,37 @@
+%% Diagrama Entidad-Relación - Sistema de Biblioteca
+%% Renderizar en: https://mermaid.live
+
+erDiagram
+    USUARIOS ||--o{ PRESTAMOS : realiza
+    LIBROS ||--o{ PRESTAMOS : es-prestado
+    
+    USUARIOS {
+        number id PK
+        varchar2 nombre
+        varchar2 apellido
+        varchar2 email UK
+        varchar2 rut UK
+        varchar2 telefono
+        timestamp fecha_registro
+        varchar2 estado
+    }
+    
+    LIBROS {
+        number id PK
+        varchar2 titulo
+        varchar2 autor
+        varchar2 isbn UK
+        varchar2 categoria
+        number cantidad_disponible
+        number cantidad_total
+    }
+    
+    PRESTAMOS {
+        number id PK
+        number id_usuario FK
+        number id_libro FK
+        timestamp fecha_prestamo
+        date fecha_devolucion_esperada
+        timestamp fecha_devolucion_real
+        varchar2 estado
+    }
