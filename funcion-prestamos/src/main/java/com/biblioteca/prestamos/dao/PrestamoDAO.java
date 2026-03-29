@@ -13,13 +13,25 @@ public class PrestamoDAO {
 
     static {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(System.getenv().getOrDefault("DB_URL", 
-            "jdbc:oracle:thin:@localhost:1521:XE"));
+        
+        String url = System.getenv().getOrDefault("DB_URL", 
+            "jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)" +
+            "(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))" +
+            "(connect_data=(service_name=g64afca1579a0d2_s58onuxcx4c1qxe9_high.adb.oraclecloud.com))" +
+            "(security=(ssl_server_dn_match=yes)))");
+        
+        config.setJdbcUrl(url);
         config.setUsername(System.getenv().getOrDefault("DB_USER", "biblioteca"));
         config.setPassword(System.getenv().getOrDefault("DB_PASSWORD", "#Ng3naUQa*THhTd"));
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(2);
         config.setConnectionTimeout(30000);
+        
+        String tnsAdmin = System.getenv("ORACLE_NET_TNS_ADMIN");
+        if (tnsAdmin != null) {
+            System.setProperty("oracle.net.tns_admin", tnsAdmin);
+        }
+        
         dataSource = new HikariDataSource(config);
     }
 

@@ -51,6 +51,7 @@ Thumbs.db
 
 ### Oracle Wallet ###
 Wallet_*/
-*.sso
-*.p12
-*.jks
+
+### Archivos temporales ###
+ExecuteScripts.class
+ojdbc*.jar

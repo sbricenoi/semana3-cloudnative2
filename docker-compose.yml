@@ -3,32 +3,38 @@ version: '3.8'
 services:
   funcion-usuarios:
     build:
-      context: ./funcion-usuarios
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: funcion-usuarios/Dockerfile
     container_name: funcion-usuarios
     ports:
       - "8081:8081"
     environment:
       - PORT=8081
-      - DB_URL=${DB_URL}
-      - DB_USER=${DB_USER:-biblioteca}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_URL=jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g64afca1579a0d2_s58onuxcx4c1qxe9_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+      - DB_USER=biblioteca
+      - DB_PASSWORD=#Ng3naUQa*THhTd
+      - ORACLE_NET_TNS_ADMIN=/app/wallet
+    volumes:
+      - ./wallet:/app/wallet:ro
     networks:
       - biblioteca-network
     restart: unless-stopped
 
   funcion-prestamos:
     build:
-      context: ./funcion-prestamos
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: funcion-prestamos/Dockerfile
     container_name: funcion-prestamos
     ports:
       - "8082:8082"
     environment:
       - PORT=8082
-      - DB_URL=${DB_URL}
-      - DB_USER=${DB_USER:-biblioteca}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_URL=jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g64afca1579a0d2_s58onuxcx4c1qxe9_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+      - DB_USER=biblioteca
+      - DB_PASSWORD=#Ng3naUQa*THhTd
+      - ORACLE_NET_TNS_ADMIN=/app/wallet
+    volumes:
+      - ./wallet:/app/wallet:ro
     networks:
       - biblioteca-network
     restart: unless-stopped

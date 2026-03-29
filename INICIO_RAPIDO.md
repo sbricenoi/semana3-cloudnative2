@@ -17,19 +17,29 @@ Guía de 5 minutos para poner en marcha el sistema.
 cd proyecto-biblioteca-serverless
 ```
 
-### 2. Iniciar el Sistema
+### 2. Ejecutar Scripts en Oracle Cloud (PRIMERO)
+
+**IMPORTANTE**: Antes de iniciar el sistema, debes ejecutar los scripts en Oracle Cloud.
+
+#### Opción A: Con SQL Developer (Recomendado)
+Sigue la guía en `USAR_SQL_DEVELOPER.md`
+
+#### Opción B: Desde Oracle Cloud Console
+1. Ir a Database Actions → SQL
+2. Ejecutar `database/schema.sql`
+3. Ejecutar `database/seed.sql`
+
+Ver detalles en `EJECUTAR_SCRIPTS_MANUAL.md`
+
+### 3. Iniciar el Sistema
 
 ```bash
-./start-system.sh
+docker-compose up --build
 ```
 
-**Nota**: Este script:
-- Levanta todos los servicios con Docker Compose
-- Espera a que Oracle esté listo
-- Inicializa la base de datos automáticamente
-- Verifica health checks
+**Nota**: Las funciones se conectarán automáticamente a Oracle Cloud
 
-**Tiempo estimado**: 3-5 minutos
+**Tiempo estimado**: 2-3 minutos
 
 ### 3. Verificar que Todo Funciona
 
@@ -97,10 +107,10 @@ docker-compose down -v
 
 ## Problemas Comunes
 
-### Oracle no inicia
-- Verifica que tienes suficiente RAM disponible
-- Espera 3-5 minutos (Oracle tarda en iniciar)
-- Revisa logs: `docker-compose logs oracle-db`
+### Funciones no conectan a Oracle Cloud
+- Verifica que ejecutaste los scripts de BD
+- Verifica que la carpeta wallet/ existe
+- Revisa logs: `docker-compose logs funcion-usuarios`
 
 ### Puerto ya en uso
 ```bash
