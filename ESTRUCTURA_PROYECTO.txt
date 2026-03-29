@@ -1,0 +1,159 @@
+ESTRUCTURA DEL PROYECTO - Sistema de Biblioteca Serverless
+═══════════════════════════════════════════════════════════════════════
+
+proyecto-biblioteca-serverless/
+│
+├── 📄 Archivos de Configuración Principal
+│   ├── .gitignore                          Exclusiones de Git
+│   ├── .env.example                        Template de variables de entorno
+│   └── docker-compose.yml                  Orquestación de servicios Docker
+│
+├── 📚 Documentación Principal
+│   ├── EMPEZAR_AQUI.md                     ★ Punto de entrada principal
+│   ├── INICIO_RAPIDO.md                    ★ Guía de 5 minutos
+│   ├── README.md                           ★ Documentación completa
+│   ├── IMPLEMENTACION_COMPLETA.txt         Resumen con estadísticas
+│   ├── RESUMEN_IMPLEMENTACION.md           Estado detallado del proyecto
+│   └── INDICE_DOCUMENTACION.md             Este índice
+│
+├── 📋 Guías de Trabajo
+│   ├── PRUEBAS.md                          Casos de prueba con cURL
+│   ├── GUIA_DESPLIEGUE_DOCKER_LAB.md       Paso a paso para Docker Lab
+│   ├── INSTRUCCIONES_VIDEO.md              Guía para grabar video
+│   ├── CHECKLIST_ENTREGA.md                Verificación pre-entrega
+│   ├── POSTMAN_COLLECTION.json             Colección de Postman
+│   └── CONTRIBUIDORES.md                   Información de integrantes
+│
+├── 🔧 Scripts de Automatización
+│   ├── start-system.sh                     ★ Inicia sistema completo
+│   ├── init-database.sh                    Inicializa base de datos
+│   └── COMANDOS_UTILES.sh                  Menú interactivo de comandos
+│
+├── 📁 docs/                                Documentación Técnica
+│   ├── arquitectura.md                     Decisiones arquitectónicas
+│   ├── diagrama-arquitectura.md            Diagramas ASCII
+│   ├── diagrama.mmd                        Diagrama componentes (Mermaid)
+│   └── modelo-datos.mmd                    Modelo ER (Mermaid)
+│
+├── 🗄️ database/                            Base de Datos Oracle
+│   ├── schema.sql                          ★ Creación de tablas y objetos
+│   ├── seed.sql                            ★ Datos de prueba
+│   └── README.md                           Instrucciones de BD
+│
+├── 🔷 funcion-usuarios/                    Función Serverless de Usuarios
+│   ├── pom.xml                             Dependencias Maven
+│   ├── Dockerfile                          Imagen Docker
+│   ├── README.md                           Documentación
+│   └── src/main/java/com/biblioteca/usuarios/
+│       ├── UsuariosHandler.java            ★ Handler principal
+│       ├── dao/
+│       │   └── UsuarioDAO.java             Acceso a datos
+│       └── model/
+│           ├── Usuario.java                Modelo de Usuario
+│           └── ApiResponse.java            Wrapper de respuestas
+│
+├── 🔶 funcion-prestamos/                   Función Serverless de Préstamos
+│   ├── pom.xml                             Dependencias Maven
+│   ├── Dockerfile                          Imagen Docker
+│   ├── README.md                           Documentación
+│   └── src/main/java/com/biblioteca/prestamos/
+│       ├── PrestamosHandler.java           ★ Handler principal
+│       ├── dao/
+│       │   └── PrestamoDAO.java            Acceso a datos
+│       └── model/
+│           ├── Prestamo.java               Modelo de Préstamo
+│           └── ApiResponse.java            Wrapper de respuestas
+│
+└── 🌐 microservicio-bff/                   Microservicio BFF (Spring Boot)
+    ├── pom.xml                             Dependencias Maven
+    ├── Dockerfile                          Imagen Docker
+    ├── README.md                           Documentación
+    └── src/main/
+        ├── java/com/biblioteca/bff/
+        │   ├── BffApplication.java         ★ Clase principal Spring Boot
+        │   ├── controller/
+        │   │   ├── UsuarioController.java  REST endpoints usuarios
+        │   │   └── PrestamoController.java REST endpoints préstamos
+        │   ├── service/
+        │   │   ├── UsuarioService.java     Orquestación usuarios
+        │   │   └── PrestamoService.java    Orquestación préstamos
+        │   ├── client/
+        │   │   └── ServerlessClient.java   Cliente HTTP genérico
+        │   ├── model/
+        │   │   ├── Usuario.java            DTO Usuario
+        │   │   ├── Prestamo.java           DTO Préstamo
+        │   │   └── ApiResponse.java        Wrapper de respuestas
+        │   ├── config/
+        │   │   └── ServerlessConfig.java   Configuración de URLs
+        │   └── exception/
+        │       ├── GlobalExceptionHandler.java  Manejo global errores
+        │       └── ServerlessException.java     Excepción personalizada
+        └── resources/
+            └── application.properties      ★ Configuración Spring Boot
+
+
+LEYENDA:
+═══════════════════════════════════════════════════════════════════════
+
+★ = Archivo crítico que debes conocer
+📄 = Archivo de configuración
+📚 = Documentación
+📋 = Guías y checklists
+🔧 = Scripts ejecutables
+📁 = Carpeta de documentación
+🗄️ = Base de datos
+🔷 = Función serverless 1
+🔶 = Función serverless 2
+🌐 = Microservicio principal
+
+
+NAVEGACIÓN RÁPIDA:
+═══════════════════════════════════════════════════════════════════════
+
+Para empezar:                   EMPEZAR_AQUI.md
+Para ejecutar rápido:           INICIO_RAPIDO.md
+Para entender arquitectura:     docs/arquitectura.md
+Para probar:                    PRUEBAS.md
+Para desplegar:                 GUIA_DESPLIEGUE_DOCKER_LAB.md
+Para video:                     INSTRUCCIONES_VIDEO.md
+Para entregar:                  CHECKLIST_ENTREGA.md
+
+
+ARCHIVOS POR TECNOLOGÍA:
+═══════════════════════════════════════════════════════════════════════
+
+Java:
+  • 22 archivos .java
+  • Distribuidos en 3 componentes
+  • Total: ~1,200 líneas de código
+
+SQL:
+  • 2 archivos .sql
+  • schema.sql (estructura)
+  • seed.sql (datos)
+  • Total: ~150 líneas
+
+Maven:
+  • 3 archivos pom.xml
+  • Uno por componente Java
+
+Docker:
+  • 4 Dockerfiles
+  • 1 docker-compose.yml
+  • Scripts de inicio automatizados
+
+Spring Boot:
+  • 1 application.properties
+  • 14 clases Java
+  • Estructura MVC completa
+
+
+TOTAL DE ARCHIVOS EN EL PROYECTO: 60+
+═══════════════════════════════════════════════════════════════════════
+
+Código fuente:           26 archivos
+Configuración:            8 archivos
+Documentación:           17 archivos
+Scripts:                  3 archivos
+Docker:                   5 archivos
+Git:                      1 repositorio
