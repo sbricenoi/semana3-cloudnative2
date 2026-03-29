@@ -17,8 +17,8 @@ COPY --from=build /app/target/funcion-prestamos-1.0.0.jar app.jar
 EXPOSE 8082
 
 ENV PORT=8082
-ENV DB_URL=jdbc:oracle:thin:@oracle-db:1521:XE
-ENV DB_USER=system
-ENV DB_PASSWORD=system123
+ENV DB_URL=jdbc:oracle:thin:@<HOST>:<PUERTO>/<SERVICE_NAME>
+ENV DB_USER=biblioteca
+ENV DB_PASSWORD=#Ng3naUQa*THhTd
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -15,8 +15,8 @@ public class PrestamoDAO {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(System.getenv().getOrDefault("DB_URL", 
             "jdbc:oracle:thin:@localhost:1521:XE"));
-        config.setUsername(System.getenv().getOrDefault("DB_USER", "system"));
-        config.setPassword(System.getenv().getOrDefault("DB_PASSWORD", "system123"));
+        config.setUsername(System.getenv().getOrDefault("DB_USER", "biblioteca"));
+        config.setPassword(System.getenv().getOrDefault("DB_PASSWORD", "#Ng3naUQa*THhTd"));
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(2);
         config.setConnectionTimeout(30000);
