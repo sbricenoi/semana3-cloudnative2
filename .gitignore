@@ -55,6 +55,7 @@ wallet/
 
 ### Documentación ###
 *.md
+!README.md
 docs/
 
 ### Archivos temporales ###
