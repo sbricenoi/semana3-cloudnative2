@@ -27,11 +27,6 @@ public class PrestamoDAO {
         config.setMinimumIdle(2);
         config.setConnectionTimeout(30000);
         
-        String tnsAdmin = System.getenv("ORACLE_NET_TNS_ADMIN");
-        if (tnsAdmin != null) {
-            System.setProperty("oracle.net.tns_admin", tnsAdmin);
-        }
-        
         dataSource = new HikariDataSource(config);
     }
 

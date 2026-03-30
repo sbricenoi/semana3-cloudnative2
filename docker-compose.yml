@@ -3,17 +3,19 @@ version: '3.8'
 services:
   funcion-usuarios:
     build:
-      context: .
-      dockerfile: funcion-usuarios/Dockerfile
+      context: ./funcion-usuarios
+      dockerfile: Dockerfile
     container_name: funcion-usuarios
     ports:
       - "8081:8081"
     environment:
       - PORT=8081
-      - DB_URL=jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g64afca1579a0d2_s58onuxcx4c1qxe9_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
-      - DB_USER=biblioteca
+      - DB_URL=jdbc:oracle:thin:@biblioteca_high
+      - DB_USER=ADMIN
       - DB_PASSWORD=#Ng3naUQa*THhTd
+      - TNS_ADMIN=/app/wallet
       - ORACLE_NET_TNS_ADMIN=/app/wallet
+      - JAVA_TOOL_OPTIONS=-Doracle.net.tns_admin=/app/wallet -Djavax.net.ssl.trustStore=/app/wallet/truststore.jks -Djavax.net.ssl.trustStoreType=JKS -Djavax.net.ssl.trustStorePassword=#Ng3naUQa*THhTd -Djavax.net.ssl.keyStore=/app/wallet/keystore.jks -Djavax.net.ssl.keyStoreType=JKS -Djavax.net.ssl.keyStorePassword=#Ng3naUQa*THhTd -Doracle.net.ssl_server_dn_match=true
     volumes:
       - ./wallet:/app/wallet:ro
     networks:
@@ -22,17 +24,19 @@ services:
 
   funcion-prestamos:
     build:
-      context: .
-      dockerfile: funcion-prestamos/Dockerfile
+      context: ./funcion-prestamos
+      dockerfile: Dockerfile
     container_name: funcion-prestamos
     ports:
       - "8082:8082"
     environment:
       - PORT=8082
-      - DB_URL=jdbc:oracle:thin:@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g64afca1579a0d2_s58onuxcx4c1qxe9_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
-      - DB_USER=biblioteca
+      - DB_URL=jdbc:oracle:thin:@biblioteca_high
+      - DB_USER=ADMIN
       - DB_PASSWORD=#Ng3naUQa*THhTd
+      - TNS_ADMIN=/app/wallet
       - ORACLE_NET_TNS_ADMIN=/app/wallet
+      - JAVA_TOOL_OPTIONS=-Doracle.net.tns_admin=/app/wallet -Djavax.net.ssl.trustStore=/app/wallet/truststore.jks -Djavax.net.ssl.trustStoreType=JKS -Djavax.net.ssl.trustStorePassword=#Ng3naUQa*THhTd -Djavax.net.ssl.keyStore=/app/wallet/keystore.jks -Djavax.net.ssl.keyStoreType=JKS -Djavax.net.ssl.keyStorePassword=#Ng3naUQa*THhTd -Doracle.net.ssl_server_dn_match=true
     volumes:
       - ./wallet:/app/wallet:ro
     networks:

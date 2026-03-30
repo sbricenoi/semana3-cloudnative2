@@ -51,6 +51,11 @@ Thumbs.db
 
 ### Oracle Wallet ###
 Wallet_*/
+wallet/
+
+### Documentación ###
+*.md
+docs/
 
 ### Archivos temporales ###
 ExecuteScripts.class

@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static spark.Spark.*;
