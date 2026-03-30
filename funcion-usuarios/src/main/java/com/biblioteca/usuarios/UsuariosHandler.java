@@ -4,6 +4,7 @@ import com.biblioteca.usuarios.dao.UsuarioDAO;
 import com.biblioteca.usuarios.model.ApiResponse;
 import com.biblioteca.usuarios.model.Usuario;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import spark.Request;
 import spark.Response;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import static spark.Spark.*;
 
 public class UsuariosHandler {
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
     private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public static void main(String[] args) {

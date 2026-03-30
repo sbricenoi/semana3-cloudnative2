@@ -274,8 +274,7 @@ docker-compose down -v
 
 ## Autores
 
-- [Nombre Integrante 1]
-- [Nombre Integrante 2]
+- Sebastian Briceño
 
 ## Licencia
 
